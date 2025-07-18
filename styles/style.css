@@ -9,6 +9,7 @@
   margin: 0;
   padding: 0;
 }
+
 /* shared style */
 .btn-primary {
   font-size: 1.25rem;
@@ -17,45 +18,106 @@
   background-color: rgba(229, 84, 115, 1);
   color: #ffffff;
   border: none;
-  padding: 20px 45px;
-  cursor:pointer;
+  padding: 45px;
+  cursor: pointer;
 }
 
-/* header styles */
-.header {
-  background-color: rgba(229, 84, 115, 0.1);
+.primary-color {
+  color: rgba(39, 39, 39, 1);
 }
+
+.secondary-color {
+  color: rgba(39, 39, 39, 0.6);
+}
+
+/* banner styles */
+.banner {
+  background-color: rgba(229, 84, 115, 0.1);
+  justify-content: center;
+  display: flex;
+}
+
 .container {
   max-width: 1440px;
-  height: 100%;
-  display: flex;
-  gap: 100px;
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    "header-title       header-title        header-right-image  header-right-image"
+    "header-description header-description  header-right-image  header-right-image"
+    "btn-click          btn-click           header-right-image  header-right-image";
+  padding: 20px;
 }
 
-/* header left column */
-.header-left {
-  flex: 1;
-  align-content: center;
-}
 .header-title {
+  grid-area: header-title;
   font-size: 5rem;
   font-weight: 900;
   margin-bottom: 32px;
+  align-self: end;
 }
 
 .header-description {
+  grid-area: header-description;
   font-size: 1.125rem;
   line-height: 30px;
   margin-bottom: 32px;
 }
 
-.btn-click{
-    
-}
+.btn-click {
+  grid-area: btn-click;
+margin-top: 20px;}
 
-/* header right column */
-.header-right img {
+.header-right-image {
+  grid-area: header-right-image;
   height: 100%;
   width: 100%;
+}
+
+/* small device */
+@media screen and (max-width: 576px) {
+  .container {
+    max-width: 576px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header-title"
+      "header-description"
+      "header-right-image"
+      "btn-click";
+  }
+  .header-title {
+    font-size: 3rem;
+  }
+  .btn-primary {
+    width: 100%;
+  }
+  .header-right-image {
+    width: 200px;
+    justify-self: center;
+  }
+}
+
+/* medium device */
+@media screen and (min-width: 576px) and (max-width: 992px) {
+  .container {
+    text-align: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "header-title header-title "
+      "header-description header-right-image "
+      "btn-click btn-click";
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+  .header-right-image {
+    justify-self: center;
+    width: 200px;
+  }
+    .header-title {
+    font-size: 4rem;
+  }
+  .header-description{
+    align-self: center;
+  }
 }
